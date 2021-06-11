@@ -1,3 +1,4 @@
+require("dotenv").config()
 const ex=require("express")
 const app=ex()
 const bodyparser=require("body-parser")
@@ -31,10 +32,10 @@ app.post("/",function(req,res){
         res.redirect("/");
     })
     let jsondata=JSON.stringify(data);
-    let url="https://us6.api.mailchimp.com/3.0/lists/5483d7beb2"
+    let url="https://us6.api.mailchimp.com/3.0/lists/"+process.env.LIST_ID
     let options={
         method:"POST",
-        auth:"tista123:33873dfe18dc3a46effb4d712dd1e109-us6"
+        auth:"tista123:"+process.env.API_KEY
     }
    // var b=true;
     const request=https.request(url,options,function(resp){
@@ -59,6 +60,3 @@ app.post("/",function(req,res){
 app.listen(process.env.PORT||8080,function(){
     console.log("listening at port 8080");
 })
-//893ece3ccd
-//33873dfe18dc3a46effb4d712dd1e109-us6
-//33873dfe18dc3a46effb4d712dd1e109-us6
